@@ -11,7 +11,7 @@ pipeline{
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t mastour/dojo-jump:latest .'
+				sh 'docker build -t mastoura/dojo-jump:latest .'
 			}
 		}
 
