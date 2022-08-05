@@ -3,13 +3,13 @@ pipeline {
 	agent any
 
 	environment {
-		DOCKERHUB_CREDENTIALS=credentials('chandra-dockerhub')
-		AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
-  		AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+		DOCKERHUB_CREDENTIALS=credentials('mastoura-dockerhub')
+		AWS_ACCESS_KEY_ID     = credentials('aws-access-key-id')
+  		AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
 		ARTIFACT_NAME = 'Dockerrun.aws.json'
-		AWS_S3_BUCKET = 'online-dojojump-docker-cicd'
-		AWS_EB_APP_NAME = 'online-dojojump-cicd'
-        AWS_EB_ENVIRONMENT_NAME = 'Onlinedojojumpcicd-env'
+		AWS_S3_BUCKET = 'jenkines'
+		AWS_EB_APP_NAME = 'docker'
+        AWS_EB_ENVIRONMENT_NAME = 'Docker-env'
         AWS_EB_APP_VERSION = "${BUILD_ID}"
 	}
 
@@ -18,7 +18,7 @@ pipeline {
 		stage('Build') {
 
 			steps {
-				sh 'docker build -t chandradeoarya/dojo-jump:latest .'
+				sh 'docker build -t mastoura/dojo-jump:latest .'
 			}
 		}
 
@@ -32,7 +32,7 @@ pipeline {
 		stage('Push') {
 
 			steps {
-				sh 'docker push chandradeoarya/dojo-jump:latest'
+				sh 'docker push mastoura/dojo-jump:latest'
 			}
 		}
 
